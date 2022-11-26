@@ -1,5 +1,5 @@
 //
-//  Animation+extensions.swift
+//  Animation+PublicExtensions.swift
 //  TransitionKit
 //
 //  Created by Stephen Cotner on 11/14/22.

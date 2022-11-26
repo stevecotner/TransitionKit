@@ -7,13 +7,17 @@
 
 import SwiftUI
 
-struct TransitionNamespaceReader<Content>: View where Content: View {
+public struct TransitionNamespaceReader<Content>: View where Content: View {
     var content: (Namespace.ID) -> Content
     
     @EnvironmentObject private var transitionModel: TransitionModel
     @Namespace private var placeholderNamespace
     
-    var body: some View {
+    public init(content: @escaping (Namespace.ID) -> Content) {
+        self.content = content
+    }
+    
+    public var body: some View {
         content(transitionModel.namespace ?? placeholderNamespace)
     }
 }

@@ -18,18 +18,18 @@ struct TransitionStylePicker: View {
                 .padding(.bottom, -8)
             
             Picker("Transition Style", selection: $transitionStyle) {
-                Text("Split").tag(TransitionStyle.split)
                 Text("Fade").tag(TransitionStyle.fade)
+                Text("Split").tag(TransitionStyle.split)
             }
             .padding(.top, 3)
         }
         .padding(.bottom, 4)
-        .padding(.leading, 20)
+//        .padding(.leading, 20)
         .padding(.trailing, 10)
-        .background(
-            RoundedRectangle(cornerRadius: 12)
-                .stroke(style: .init(lineWidth: 1.5))
-        )
+//        .background(
+//            RoundedRectangle(cornerRadius: 12)
+//                .stroke(style: .init(lineWidth: 1.5))
+//        )
     }
 }
 

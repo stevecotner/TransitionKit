@@ -1,5 +1,5 @@
 //
-//  SimpleView.swift
+//  BasicView.swift
 //  SampleApp
 //
 //  Created by Stephen Cotner on 11/23/22.
@@ -8,34 +8,39 @@
 import SwiftUI
 import TransitionKit
 
-struct SimpleView: View {
+struct BasicView: View {
     @State var is1Active = false
     @State var is2Active = false
     @State var is3Active = false
     @State var is4Active = false
     @State var is5Active = false
     
-    @State var transitionStyle: TransitionStyle = .split
+    @State var transitionStyle: TransitionStyle = .fade
     
     var body: some View {
         TransitionView { namespace in
-            VStack {
-                Text("Simple Transitions A")
-                    .font(.title)
+            VStack(alignment: .leading, spacing: 0) {
+                Text("Basic")
+                    .font(.title.bold())
+                    .padding(.horizontal, 20)
+                    .padding(.top, 20)
                 
                 TransitionStylePicker(transitionStyle: $transitionStyle)
+                    .padding(.horizontal, 20)
                 
                 Spacer()
                 
-                ForEach(Array(1...5), id: \.self) { number in
-                    let id = String(number)
-                    
-                    TransitionWrapper(id: id) {
-                        Button {
-                            action(for: number)
-                        } label: {
-                            Text(id)
-                                .matchedGeometryEffect(id: id, in: namespace)
+                VStack(alignment: .center, spacing: 20) {
+                    ForEach(Array(1...5), id: \.self) { number in
+                        let id = String(number)
+                        
+                        TransitionWrapper(id: id) {
+                            Button {
+                                action(for: number)
+                            } label: {
+                                Text(id)
+                                    .matchedGeometryEffect(id: id, in: namespace)
+                            }
                         }
                     }
                 }
@@ -52,7 +57,7 @@ struct SimpleView: View {
                         transitionWrapperID: id,
                         isActive: binding(for: number),
                         transitionStyle: transitionStyle) { _ in
-                            VStack {
+                            VStack(alignment: .leading) {
                                 Spacer()
                                     .frame(height: 20)
                                 Text(id)
@@ -111,8 +116,8 @@ struct SimpleView: View {
     }
 }
 
-struct SimpleView_Previews: PreviewProvider {
+struct BasicView_Previews: PreviewProvider {
     static var previews: some View {
-        SimpleView()
+        BasicView()
     }
 }

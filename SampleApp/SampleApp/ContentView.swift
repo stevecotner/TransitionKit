@@ -10,16 +10,22 @@ import TransitionKit
 
 struct ContentView: View {
     
+    init() {
+        // This solves a weird bug where a tab's content covers the tab bar, if the content ignores safe areas.
+        // See: https://developer.apple.com/forums/thread/690563
+        UITabBar.appearance().scrollEdgeAppearance = UITabBarAppearance.init(idiom: .unspecified)
+    }
+    
     var body: some View {
         TabView {
-            SimpleView()
+            BasicView()
                 .tabItem {
-                    Text("Simple A")
+                    Label("Basic", systemImage: "1.square")
                 }
             
-            SimpleViewWithSmartBinding()
+            CardListView()
                 .tabItem {
-                    Text("Simple B")
+                    Label("Cards", systemImage: "person.crop.square")
                 }
         }
     }
