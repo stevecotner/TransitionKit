@@ -14,7 +14,7 @@ public struct TransitionLink<Content>: View where Content: View {
     let transitionWrapperID: String
     
     @Binding var isActive: Bool
-    var transitionStyle: TransitionStyle
+    var transitionStyle: TransitionStyle = .split
     var showsXButton = true
     
     @EnvironmentObject var transitionModel: TransitionModel
@@ -26,7 +26,7 @@ public struct TransitionLink<Content>: View where Content: View {
         viewMakerID: String,
         transitionWrapperID: String,
         isActive: Binding<Bool>,
-        transitionStyle: TransitionStyle,
+        transitionStyle: TransitionStyle = .split,
         showsXButton: Bool = true,
         destination: @escaping (@escaping TransitionUnwindAction) -> Content
     ) {

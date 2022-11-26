@@ -24,12 +24,7 @@ struct TransitionStylePicker: View {
             .padding(.top, 3)
         }
         .padding(.bottom, 4)
-//        .padding(.leading, 20)
         .padding(.trailing, 10)
-//        .background(
-//            RoundedRectangle(cornerRadius: 12)
-//                .stroke(style: .init(lineWidth: 1.5))
-//        )
     }
 }
 
