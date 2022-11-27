@@ -13,12 +13,22 @@ public struct TransitionWrapper<Content>: View where Content: View {
     
     @EnvironmentObject private var transitionModel: TransitionModel
     
+    @State var xPointLeftOfContent: CGFloat?
+    @State var xPointRightOfContent: CGFloat?
     @State var yPointAboveContent: CGFloat?
     @State var yPointBelowContent: CGFloat?
     
     var originalContentHeight: CGFloat? {
         if let yPointAboveContent, let yPointBelowContent {
             return yPointBelowContent - yPointAboveContent
+        }
+        
+        return nil
+    }
+    
+    var originalContentWidth: CGFloat? {
+        if let xPointLeftOfContent, let xPointRightOfContent {
+            return xPointRightOfContent - xPointLeftOfContent
         }
         
         return nil
@@ -42,7 +52,7 @@ public struct TransitionWrapper<Content>: View where Content: View {
                     // Otherwise, just make sure we don't show the original view.
                     Rectangle()
                         .fill(Color.clear)
-                        .frame(height: originalContentHeight)
+                        .frame(width: originalContentWidth, height: originalContentHeight)
                 }
             } else {
                 // Show the original content
@@ -54,9 +64,27 @@ public struct TransitionWrapper<Content>: View where Content: View {
                                 yPointAboveContent = geometry.frame(in: .global).maxY
                             }
                     }
-                    .frame(height: 0.001)
+                    .frame(height: 0.0001)
                     
-                    content()
+                    HStack(spacing: 0) {
+                        GeometryReader { geometry in
+                            Color.clear
+                                .onAppear {
+                                    xPointLeftOfContent = geometry.frame(in: .global).maxX
+                                }
+                        }
+                        .frame(width: 0.0001, height: 0.0001)
+                        
+                        content()
+                        
+                        GeometryReader { geometry in
+                            Color.clear
+                                .onAppear {
+                                    xPointRightOfContent = geometry.frame(in: .global).minX
+                                }
+                        }
+                        .frame(width: 0.0001, height: 0.0001)
+                    }
                     
                     GeometryReader { geometry in
                         Color.clear
@@ -64,7 +92,7 @@ public struct TransitionWrapper<Content>: View where Content: View {
                                 yPointBelowContent = geometry.frame(in: .global).minY
                             }
                     }
-                    .frame(height: 0.001)
+                    .frame(height: 0.0001)
                 }
             }
         }
