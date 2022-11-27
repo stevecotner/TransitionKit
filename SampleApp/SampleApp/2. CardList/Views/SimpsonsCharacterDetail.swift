@@ -14,8 +14,6 @@ struct SimpsonsCharacterDetail: View {
     let unwindAction: () -> Void
     
     @State private var showDescription = false
-    @State private var hideTabBar = false
-    @State private var hasDisappeared = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -92,17 +90,10 @@ struct SimpsonsCharacterDetail: View {
         }
         .onAppear {
             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                if !hasDisappeared {
-                    hideTabBar = true
-                }
-                
                 withAnimation(.easeIn) {
                     showDescription = true
                 }
             }
-        }
-        .onDisappear {
-            hasDisappeared = true
         }
     }
     
@@ -115,8 +106,6 @@ struct SimpsonsCharacterDetail: View {
         
         // Just in case the user asks to show the view again before it's really been removed.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
-            hideTabBar = true
-            
             withAnimation(.easeIn) {
                 showDescription = true
             }
