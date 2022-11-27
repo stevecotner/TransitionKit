@@ -111,7 +111,6 @@ struct SimpsonsCharacterDetail: View {
     
     func remove() {
         withAnimation(.transitionRemove) {
-            hideTabBar = false
             showDescription = false
         }
         
