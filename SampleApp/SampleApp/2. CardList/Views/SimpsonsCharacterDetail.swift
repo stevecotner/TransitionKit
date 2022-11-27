@@ -13,8 +13,9 @@ struct SimpsonsCharacterDetail: View {
     let matchedGeometryID: String
     let unwindAction: () -> Void
     
-    @State var showDescription = false
-    @State var hideTabBar = false
+    @State private var showDescription = false
+    @State private var hideTabBar = false
+    @State private var hasDisappeared = false
     
     var body: some View {
         GeometryReader { geometry in
@@ -60,11 +61,6 @@ struct SimpsonsCharacterDetail: View {
                                 }
                                 
                                 Spacer(minLength: geometry.safeAreaInsets.bottom + 40)
-                                
-                                if hideTabBar {
-                                    Color.clear
-                                        .toolbar(.hidden, for: .tabBar) // we can hide the tab bar from a subview!
-                                }
                             }
                             .matchedGeometryEffect(id: matchedGeometryID + "content", in: namespace)
                             .frame(maxWidth: .infinity, maxHeight: .infinity)
@@ -95,17 +91,18 @@ struct SimpsonsCharacterDetail: View {
             }
         }
         .onAppear {
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.25) {
-                withAnimation(.transitionAdd) {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                if !hasDisappeared {
                     hideTabBar = true
                 }
-            }
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 0.6) {
+                
                 withAnimation(.easeIn) {
                     showDescription = true
                 }
             }
+        }
+        .onDisappear {
+            hasDisappeared = true
         }
     }
     
@@ -115,6 +112,15 @@ struct SimpsonsCharacterDetail: View {
         }
         
         unwindAction()
+        
+        // Just in case the user asks to show the view again before it's really been removed.
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
+            hideTabBar = true
+            
+            withAnimation(.easeIn) {
+                showDescription = true
+            }
+        }
     }
 }
 

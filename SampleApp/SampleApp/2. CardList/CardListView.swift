@@ -10,8 +10,20 @@ import TransitionKit
 
 struct CardListView: View {
     @State var characters: [SimpsonsCharacter] = SimpsonsCharacter.makeCharacters()
-    @State var activeCharacter: SimpsonsCharacter?
+    @State var activeCharacter: SimpsonsCharacter? {
+        willSet {
+            if newValue == nil {
+                DispatchQueue.main.async {
+                    withAnimation(.linear) {
+                        hideTabBar = false
+                    }
+                }
+            }
+        }
+    }
     let transitionStyle: TransitionStyle = .split
+    
+    @State private var hideTabBar = false
     
     var body: some View {
         TransitionView { namespace in
@@ -19,8 +31,9 @@ struct CardListView: View {
                 ZStack {
                     VStack(alignment: .leading, spacing: 30) {
                         Text("Cards")
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, 30)
                             .padding(.top, 20)
+                            .padding(.bottom, -10)
                             .font(.title.bold())
                         
                         ForEach(characters, id: \.id) { character in
@@ -57,13 +70,24 @@ struct CardListView: View {
                             SimpsonsCharacterDetail(character: character, matchedGeometryID: id, unwindAction: unwindAction)
                         }
                     }
+                    
+                    if hideTabBar {
+                        Color.clear
+                            .toolbar(.hidden, for: .tabBar)
+                    }
                 }
             }
         }
     }
     
     func action(for character: SimpsonsCharacter) {
-        activeCharacter = character
+        withAnimation(.linear) {
+            hideTabBar = true
+        }
+        
+        DispatchQueue.main.async {
+            activeCharacter = character
+        }
     }
     
     func binding(for character: SimpsonsCharacter) -> Binding<Bool> {
