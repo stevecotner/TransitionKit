@@ -9,6 +9,7 @@ import SwiftUI
 
 class TransitionModel: ObservableObject {
     var namespace: Namespace.ID?
+    var totalWidth: CGFloat?
     var totalHeight: CGFloat?
     var viewMakers: [TypeErasedTransitionLinkViewMaker] = []
     
@@ -18,9 +19,16 @@ class TransitionModel: ObservableObject {
         }
     }
     
-    var activeSplitTransitionWrapperIDs: [String] {
+    var activeSplitVerticalTransitionWrapperIDs: [String] {
         return viewMakers.compactMap {
             if $0.transitionStyle == .splitVertical { return $0.transitionWrapperID }
+            return nil
+        }
+    }
+    
+    var activeExplodeTransitionWrapperIDs: [String] {
+        return viewMakers.compactMap {
+            if $0.transitionStyle == .explode { return $0.transitionWrapperID }
             return nil
         }
     }

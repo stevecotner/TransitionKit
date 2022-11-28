@@ -10,4 +10,5 @@ import SwiftUI
 public enum TransitionStyle {    
     case fade
     case splitVertical
+    case explode
 }

@@ -43,13 +43,25 @@ public struct TransitionWrapper<Content>: View where Content: View {
         VStack {
             // If we've shown an expanded view, don't show the corresponding original wrapped view.
             if transitionModel.activeTransitionWrapperIDs.contains(id) {
-                if transitionModel.activeSplitTransitionWrapperIDs.contains(id) {
-                    // If it's a split transition, add a full-screen rectangle where the view used to be.
+                if transitionModel.activeSplitVerticalTransitionWrapperIDs.contains(id) {
+                    // If it's a split vertical transition, add an extra tall rectangle where the view used to be.
                     Rectangle()
                         .fill(Color.white.opacity(0.001))
-                        .frame(width: 1, height: transitionModel.totalHeight != nil ? transitionModel.totalHeight! * 2 : 0.001)
+                        .frame(
+                            width: originalContentWidth,
+                            height: transitionModel.totalHeight != nil ? transitionModel.totalHeight! * 2 : 0.001
+                        )
+                } else if transitionModel.activeExplodeTransitionWrapperIDs.contains(id) {
+                    // If it's an explode transition, add an extra tall and wide rectangle where the view used to be.
+                    Rectangle()
+                        .fill(Color.white.opacity(0.001))
+                        .frame(
+                            width: transitionModel.totalWidth != nil ? transitionModel.totalWidth! * 2 : 0.001,
+                            height: transitionModel.totalHeight != nil ? transitionModel.totalHeight! * 2 : 0.001
+                        )
                 } else {
                     // Otherwise, just make sure we don't show the original view.
+                    // Replace it with a rectangle of the same size.
                     Rectangle()
                         .fill(Color.clear)
                         .frame(width: originalContentWidth, height: originalContentHeight)
@@ -64,7 +76,7 @@ public struct TransitionWrapper<Content>: View where Content: View {
                                 yPointAboveContent = geometry.frame(in: .global).maxY
                             }
                     }
-                    .frame(height: 0.0001)
+                    .frame(height: 0.01)
                     
                     HStack(spacing: 0) {
                         GeometryReader { geometry in
@@ -73,7 +85,7 @@ public struct TransitionWrapper<Content>: View where Content: View {
                                     xPointLeftOfContent = geometry.frame(in: .global).maxX
                                 }
                         }
-                        .frame(width: 0.0001, height: 0.0001)
+                        .frame(width: 0.01, height: 0.01)
                         
                         content()
                         
@@ -83,7 +95,7 @@ public struct TransitionWrapper<Content>: View where Content: View {
                                     xPointRightOfContent = geometry.frame(in: .global).minX
                                 }
                         }
-                        .frame(width: 0.0001, height: 0.0001)
+                        .frame(width: 0.01, height: 0.01)
                     }
                     
                     GeometryReader { geometry in
@@ -92,7 +104,7 @@ public struct TransitionWrapper<Content>: View where Content: View {
                                 yPointBelowContent = geometry.frame(in: .global).minY
                             }
                     }
-                    .frame(height: 0.0001)
+                    .frame(height: 0.01)
                 }
             }
         }

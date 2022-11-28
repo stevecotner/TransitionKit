@@ -105,7 +105,7 @@ struct CardListView: View {
                                 viewMakerID: horizontalID,
                                 transitionWrapperID: horizontalID,
                                 isActive: horizontalBinding(for: character),
-                                transitionStyle: .fade,
+                                transitionStyle: .explode,
                                 showsXButton: false
                             ) { unwindAction in
                                 SimpsonsCharacterDetail(character: character, matchedGeometryID: horizontalID, unwindAction: unwindAction)
