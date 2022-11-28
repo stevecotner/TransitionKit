@@ -19,7 +19,7 @@ struct TransitionStylePicker: View {
             
             Picker("Transition Style", selection: $transitionStyle) {
                 Text("Fade").tag(TransitionStyle.fade)
-                Text("Split").tag(TransitionStyle.split)
+                Text("Split").tag(TransitionStyle.splitVertical)
             }
             .padding(.top, 3)
         }
@@ -30,6 +30,6 @@ struct TransitionStylePicker: View {
 
 struct TransitionStylePicker_Previews: PreviewProvider {
     static var previews: some View {
-        TransitionStylePicker(transitionStyle: .constant(.split))
+        TransitionStylePicker(transitionStyle: .constant(.splitVertical))
     }
 }

@@ -14,7 +14,7 @@ public struct TransitionLink<Content>: View where Content: View {
     let transitionWrapperID: String
     
     @Binding var isActive: Bool
-    var transitionStyle: TransitionStyle = .split
+    var transitionStyle: TransitionStyle = .splitVertical
     var showsXButton = true
     
     @EnvironmentObject var transitionModel: TransitionModel
@@ -26,7 +26,7 @@ public struct TransitionLink<Content>: View where Content: View {
         viewMakerID: String,
         transitionWrapperID: String,
         isActive: Binding<Bool>,
-        transitionStyle: TransitionStyle = .split,
+        transitionStyle: TransitionStyle = .splitVertical,
         showsXButton: Bool = true,
         destination: @escaping (@escaping TransitionUnwindAction) -> Content
     ) {
@@ -68,7 +68,7 @@ struct TransitionLink_Previews: PreviewProvider {
             viewMakerID: "example",
             transitionWrapperID: "example",
             isActive: .constant(true),
-            transitionStyle: .split,
+            transitionStyle: .splitVertical,
             destination: { _ in
                 Text("Expanded Text")
             }

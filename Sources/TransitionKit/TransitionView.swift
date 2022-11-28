@@ -22,8 +22,8 @@ public struct TransitionView<Content>: View where Content: View {
             ZStack(alignment: .top) {
                 content(namespace)
                     .opacity(transitionModel.viewMakers.count > 0 ? 0 : 1)
-                    .frame(height: transitionModel.viewMakers.count > 0 && transitionModel.viewMakers.first?.transitionStyle.isSplit == true ? geometry.size.height * 2 : geometry.size.height)
-                    .offset(y: transitionModel.viewMakers.count > 0 && transitionModel.viewMakers.first?.transitionStyle.isSplit == true ?
+                    .frame(height: transitionModel.viewMakers.count > 0 && transitionModel.viewMakers.first?.transitionStyle == .splitVertical ? geometry.size.height * 2 : geometry.size.height)
+                    .offset(y: transitionModel.viewMakers.count > 0 && transitionModel.viewMakers.first?.transitionStyle == .splitVertical ?
                             -geometry.size.height :
                                 0)
                 
@@ -54,13 +54,13 @@ public struct TransitionView<Content>: View where Content: View {
                     .frame(
                         height: index < transitionModel.viewMakers.count - 1
                         && transitionModel.viewMakers.count > index + 1
-                        && transitionModel.viewMakers[index + 1].transitionStyle.isSplit == true ?
+                        && transitionModel.viewMakers[index + 1].transitionStyle == .splitVertical ?
                         geometry.size.height * 2 : geometry.size.height
                     )
                     .offset(
                         y: index < transitionModel.viewMakers.count - 1
                         && transitionModel.viewMakers.count > index + 1
-                        && transitionModel.viewMakers[index + 1].transitionStyle.isSplit == true ?
+                        && transitionModel.viewMakers[index + 1].transitionStyle == .splitVertical ?
                         -geometry.size.height : 0)
                 }
             }

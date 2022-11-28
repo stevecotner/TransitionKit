@@ -20,7 +20,7 @@ class TransitionModel: ObservableObject {
     
     var activeSplitTransitionWrapperIDs: [String] {
         return viewMakers.compactMap {
-            if $0.transitionStyle == .split { return $0.transitionWrapperID }
+            if $0.transitionStyle == .splitVertical { return $0.transitionWrapperID }
             return nil
         }
     }
