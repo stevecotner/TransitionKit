@@ -65,7 +65,10 @@ struct CardListView: View {
                                     }
                                 }
                                 .padding(.horizontal, 30)
+                                .padding(.vertical, 100)
                             }
+                            .padding(.vertical, -100)
+                            .padding(.top, -30)
                             
                             Text("Vertical")
                                 .padding(.horizontal, 30)
