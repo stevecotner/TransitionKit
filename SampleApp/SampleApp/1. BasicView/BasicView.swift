@@ -24,6 +24,7 @@ struct BasicView: View {
                     .font(.title.bold())
                     .padding(.horizontal, 20)
                     .padding(.top, 20)
+                    .padding(.bottom, 10)
                 
                 TransitionStylePicker(transitionStyle: $transitionStyle)
                     .padding(.horizontal, 20)

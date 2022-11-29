@@ -66,6 +66,7 @@ struct SimpsonsCharacterDetail: View {
                         }
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     }
+                    .matchedGeometryEffect(id: matchedGeometryID + "wholecard", in: namespace)
                     .ignoresSafeArea(edges: [.top, .bottom])
                     
                     // X-button

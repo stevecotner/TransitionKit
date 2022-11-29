@@ -13,16 +13,17 @@ struct TransitionStylePicker: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            Text("Choose a style:").bold()
+            Text("Choose a style:")
                 .padding(.top, 10)
                 .padding(.bottom, -8)
             
             Picker("Transition Style", selection: $transitionStyle) {
                 Text("Fade").tag(TransitionStyle.fade)
-                Text("Split").tag(TransitionStyle.splitVertical)
+                Text("Split Vertically").tag(TransitionStyle.splitVertical)
             }
             .padding(.top, 3)
         }
+        .padding(.top, -10)
         .padding(.bottom, 4)
         .padding(.trailing, 10)
     }

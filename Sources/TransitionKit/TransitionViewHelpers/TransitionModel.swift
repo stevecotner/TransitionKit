@@ -26,13 +26,6 @@ class TransitionModel: ObservableObject {
         }
     }
     
-    var activeExplodeTransitionWrapperIDs: [String] {
-        return viewMakers.compactMap {
-            if $0.transitionStyle == .explode { return $0.transitionWrapperID }
-            return nil
-        }
-    }
-    
     func add(_ viewMaker: TypeErasedTransitionLinkViewMaker) {
         viewMakers.append(viewMaker)
         

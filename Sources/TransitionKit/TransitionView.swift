@@ -23,23 +23,19 @@ public struct TransitionView<Content>: View where Content: View {
                 content(namespace)
                     .opacity(transitionModel.viewMakers.count > 0 ? 0 : 1)
                     .frame(
-                        width: transitionModel.viewMakers.count > 0 &&
-                            transitionModel.viewMakers.first?.transitionStyle == .explode
-                        ? geometry.size.width * 2 : geometry.size.width,
-                        height: transitionModel.viewMakers.count > 0 &&
-                           (transitionModel.viewMakers.first?.transitionStyle == .splitVertical ||
-                            transitionModel.viewMakers.first?.transitionStyle == .explode)
-                            ? geometry.size.height * 2 : geometry.size.height)
+                        height:
+                            transitionModel.viewMakers.count > 0 &&
+                            transitionModel.viewMakers.first?.transitionStyle == .splitVertical ?
+                            geometry.size.height * 2 :
+                            geometry.size.height
+                    )
                     .offset(
-                        x: transitionModel.viewMakers.count > 0 &&
-                         transitionModel.viewMakers.first?.transitionStyle == .explode
-                        ? -geometry.size.width * 0.5 :
-                            0,
-                        y: transitionModel.viewMakers.count > 0 &&
-                            (transitionModel.viewMakers.first?.transitionStyle == .splitVertical ||
-                             transitionModel.viewMakers.first?.transitionStyle == .explode)
-                            ? -geometry.size.height :
-                                0)
+                        y:
+                            transitionModel.viewMakers.count > 0 &&
+                            transitionModel.viewMakers.first?.transitionStyle == .splitVertical ?
+                            -geometry.size.height :
+                            0
+                    )
                 
                 ForEach(Array(transitionModel.viewMakers.enumerated()), id: \.element.id) { index, viewMaker in
                     ZStack(alignment: .top) {
@@ -66,26 +62,21 @@ public struct TransitionView<Content>: View where Content: View {
                     }
                     .opacity(index < transitionModel.viewMakers.count - 1 ? 0 : 1)
                     .frame(
-                        width: width(forChildIndex: index, geometryWidth: geometry.size.width),
-                        height: index < transitionModel.viewMakers.count - 1
-                        && transitionModel.viewMakers.count > index + 1
-                        && (
-                            transitionModel.viewMakers[index + 1].transitionStyle == .splitVertical
-                            || transitionModel.viewMakers[index + 1].transitionStyle == .explode
-                            )
-                        ?
-                        geometry.size.height * 2 : geometry.size.height
+                        height:
+                            index < transitionModel.viewMakers.count - 1
+                            && transitionModel.viewMakers.count > index + 1
+                            && transitionModel.viewMakers[index + 1].transitionStyle == .splitVertical ?
+                            geometry.size.height * 2 :
+                            geometry.size.height
                     )
                     .offset(
-                        x: xOffset(forChildIndex: index, geometryWidth: geometry.size.width),
-                        y: index < transitionModel.viewMakers.count - 1
-                        && transitionModel.viewMakers.count > index + 1
-                        && (
-                            transitionModel.viewMakers[index + 1].transitionStyle == .splitVertical
-                            || transitionModel.viewMakers[index + 1].transitionStyle == .explode
-                            )
-                        ?
-                        -geometry.size.height : 0)
+                        y:
+                            index < transitionModel.viewMakers.count - 1
+                            && transitionModel.viewMakers.count > index + 1
+                            && transitionModel.viewMakers[index + 1].transitionStyle == .splitVertical ?
+                            -geometry.size.height :
+                            0
+                    )
                 }
             }
             .environmentObject(transitionModel)
@@ -95,30 +86,6 @@ public struct TransitionView<Content>: View where Content: View {
                 transitionModel.totalHeight = geometry.size.height
             }
         }
-    }
-    
-    func width(forChildIndex index: Int, geometryWidth: CGFloat) -> CGFloat {
-        index < transitionModel.viewMakers.count - 1
-        && transitionModel.viewMakers.count > index + 1
-        && transitionModel.viewMakers[index + 1].transitionStyle == .explode
-        ?
-        geometryWidth * 2 : geometryWidth
-    }
-    
-    func xOffset(forChildIndex index: Int, geometryWidth: CGFloat) -> CGFloat {
-        // Exploded parent
-        index < transitionModel.viewMakers.count - 1
-        && transitionModel.viewMakers.count > index + 1
-        && transitionModel.viewMakers[index + 1].transitionStyle == .explode
-        ?
-        -geometryWidth * 0.5 :
-        // Exploded child
-        index == transitionModel.viewMakers.count - 1
-        && transitionModel.viewMakers[index].transitionStyle == .explode
-        ?
-        -geometryWidth * 0.5 :
-        // Everything else
-        0
     }
     
     func removeAndResetActive(_ viewMaker: TypeErasedTransitionLinkViewMaker) {

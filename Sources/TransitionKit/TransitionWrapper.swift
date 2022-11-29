@@ -51,14 +51,6 @@ public struct TransitionWrapper<Content>: View where Content: View {
                             width: originalContentWidth,
                             height: transitionModel.totalHeight != nil ? transitionModel.totalHeight! * 2 : 0.001
                         )
-                } else if transitionModel.activeExplodeTransitionWrapperIDs.contains(id) {
-                    // If it's an explode transition, add an extra tall and wide rectangle where the view used to be.
-                    Rectangle()
-                        .fill(Color.white.opacity(0.001))
-                        .frame(
-                            width: transitionModel.totalWidth != nil ? transitionModel.totalWidth! * 2 : 0.001,
-                            height: transitionModel.totalHeight != nil ? transitionModel.totalHeight! * 2 : 0.001
-                        )
                 } else {
                     // Otherwise, just make sure we don't show the original view.
                     // Replace it with a rectangle of the same size.

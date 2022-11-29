@@ -27,6 +27,8 @@ struct CardListView: View {
     }
     
     @State private var hideTabBar = false
+    @State private var horizontalTransitionStyle = TransitionStyle.fade
+    @State private var verticalTransitionStyle = TransitionStyle.splitVertical
     
     var body: some View {
         GeometryReader { geometry in
@@ -42,10 +44,14 @@ struct CardListView: View {
                             Text("Horizontal")
                                 .padding(.horizontal, 30)
                                 .padding(.top, 20)
-//                                .padding(.bottom, -40)
                                 .font(.title3.bold())
                             
-                            ScrollView(.horizontal) {
+                            TransitionStylePicker(transitionStyle: $horizontalTransitionStyle)
+                                .zIndex(2)
+                                .padding(.horizontal, 30)
+                                .padding(.top, -10)
+                            
+                            ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
                                     ForEach(characters, id: \.id) { character in
                                         let id = character.id + "horizontal"
@@ -57,6 +63,7 @@ struct CardListView: View {
                                                 CardView(matchedGeometryID: id) {
                                                     SimpsonsCharacterCardContent(character: character, matchedGeometryID: id)
                                                 }
+                                                .matchedGeometryEffect(id: id + "wholecard", in: namespace)
                                                 .frame(height: 280)
                                                 .padding(.vertical, 30)
                                             }
@@ -66,15 +73,23 @@ struct CardListView: View {
                                 }
                                 .padding(.horizontal, 30)
                                 .padding(.vertical, 100)
+                                .zIndex(1)
                             }
+                            .frame(width: geometry.size.width)
                             .padding(.vertical, -100)
                             .padding(.top, -30)
+                            .zIndex(1)
                             
                             Text("Vertical")
                                 .padding(.horizontal, 30)
                                 .padding(.top, 20)
-                                .padding(.bottom, -10)
+                                
                                 .font(.title3.bold())
+                            
+                            TransitionStylePicker(transitionStyle: $verticalTransitionStyle)
+                                .zIndex(2)
+                                .padding(.horizontal, 30)
+                                .padding(.top, -10)
                             
                             ForEach(characters, id: \.id) { character in
                                 let id = character.id + "vertical"
@@ -86,6 +101,7 @@ struct CardListView: View {
                                         CardView(matchedGeometryID: id) {
                                             SimpsonsCharacterCardContent(character: character, matchedGeometryID: id)
                                         }
+                                        .matchedGeometryEffect(id: id + "wholecard", in: namespace)
                                         .padding(.horizontal, 30)
                                     }
                                     .buttonStyle(PushButton())
@@ -105,7 +121,7 @@ struct CardListView: View {
                                 viewMakerID: horizontalID,
                                 transitionWrapperID: horizontalID,
                                 isActive: horizontalBinding(for: character),
-                                transitionStyle: .explode,
+                                transitionStyle: horizontalTransitionStyle,
                                 showsXButton: false
                             ) { unwindAction in
                                 SimpsonsCharacterDetail(character: character, matchedGeometryID: horizontalID, unwindAction: unwindAction)
@@ -115,7 +131,7 @@ struct CardListView: View {
                                 viewMakerID: verticalID,
                                 transitionWrapperID: verticalID,
                                 isActive: verticalBinding(for: character),
-                                transitionStyle: .splitVertical,
+                                transitionStyle: verticalTransitionStyle,
                                 showsXButton: false
                             ) { unwindAction in
                                 SimpsonsCharacterDetail(character: character, matchedGeometryID: verticalID, unwindAction: unwindAction)
@@ -133,23 +149,13 @@ struct CardListView: View {
     }
     
     func showHorizontal(character: SimpsonsCharacter) {
-        withAnimation(.linear) {
-            hideTabBar = true
-        }
-        
-        DispatchQueue.main.async {
-            activeHorizontalCharacter = character
-        }
+        hideTabBar = true
+        activeHorizontalCharacter = character
     }
     
     func showVertical(character: SimpsonsCharacter) {
-        withAnimation(.linear) {
-            hideTabBar = true
-        }
-        
-        DispatchQueue.main.async {
-            activeVerticalCharacter = character
-        }
+        hideTabBar = true
+        activeVerticalCharacter = character
     }
     
     func horizontalBinding(for character: SimpsonsCharacter) -> Binding<Bool> {
