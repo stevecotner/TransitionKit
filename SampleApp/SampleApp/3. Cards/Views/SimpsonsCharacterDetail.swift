@@ -11,7 +11,7 @@ import TransitionKit
 struct SimpsonsCharacterDetail: View {
     let character: SimpsonsCharacter
     let matchedGeometryID: String
-    let unwindAction: () -> Void
+    let closeAction: () -> Void
     
     @State private var showDescription = false
     
@@ -103,7 +103,7 @@ struct SimpsonsCharacterDetail: View {
             showDescription = false
         }
         
-        unwindAction()
+        closeAction()
         
         // Just in case the user asks to show the view again before it's really been removed.
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0) {
@@ -119,7 +119,7 @@ struct SimpsonsCharacterDetail_Previews: PreviewProvider {
         SimpsonsCharacterDetail(
             character: SimpsonsCharacter(name: "Bart", imageName: "bart", description: "..."),
             matchedGeometryID: "1",
-            unwindAction: {}
+            closeAction: {}
         )
     }
 }

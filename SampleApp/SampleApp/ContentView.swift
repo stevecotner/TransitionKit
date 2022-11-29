@@ -23,6 +23,11 @@ struct ContentView: View {
                     Label("Basic", systemImage: "1.square")
                 }
             
+            CartView()
+                .tabItem {
+                    Label("Button", systemImage: "capsule.inset.filled")
+                }
+            
             CardListView()
                 .tabItem {
                     Label("Cards", systemImage: "person.crop.square")
@@ -33,6 +38,7 @@ struct ContentView: View {
                     Label("Decks", systemImage: "rectangle.stack")
                 }
         }
+        .accentColor(Color(UIColor.systemPink))
     }
 }
 

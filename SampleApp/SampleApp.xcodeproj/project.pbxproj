@@ -23,6 +23,8 @@
 		87A232AC292F32A500B5EC64 /* TransitionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 87A232AB292F32A500B5EC64 /* TransitionKit */; };
 		87A232AE292F56E100B5EC64 /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A232AD292F56E100B5EC64 /* BasicView.swift */; };
 		87F5A3B229367AE40029D2D8 /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3B1293679EB0029D2D8 /* DeckListView.swift */; };
+		87F5A3BC2936A0EB0029D2D8 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3BB29369EFE0029D2D8 /* CartView.swift */; };
+		87F5A3BE2936A1170029D2D8 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3BD2936A1170029D2D8 /* CheckoutView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +64,8 @@
 		87A232A9292F322700B5EC64 /* TransitionKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TransitionKit; path = ..; sourceTree = "<group>"; };
 		87A232AD292F56E100B5EC64 /* BasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
 		87F5A3B1293679EB0029D2D8 /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
+		87F5A3BB29369EFE0029D2D8 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
+		87F5A3BD2936A1170029D2D8 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,22 +94,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		872159A929317ECF009FBE07 /* 2. CardList */ = {
+		872159A929317ECF009FBE07 /* 3. Cards */ = {
 			isa = PBXGroup;
 			children = (
 				872159AB29317EED009FBE07 /* CardListView.swift */,
 				872159B72932C786009FBE07 /* SimpsonsCharacter.swift */,
 				872159AD29318797009FBE07 /* Views */,
 			);
-			path = "2. CardList";
+			path = "3. Cards";
 			sourceTree = "<group>";
 		};
-		872159AA29317EE0009FBE07 /* 3. CardDecks */ = {
+		872159AA29317EE0009FBE07 /* 4. Decks */ = {
 			isa = PBXGroup;
 			children = (
 				87F5A3B1293679EB0029D2D8 /* DeckListView.swift */,
 			);
-			path = "3. CardDecks";
+			path = "4. Decks";
 			sourceTree = "<group>";
 		};
 		872159AD29318797009FBE07 /* Views */ = {
@@ -124,22 +128,22 @@
 			path = Helpers;
 			sourceTree = "<group>";
 		};
-		8754D9BB293141E8002BFE73 /* 1. BasicView */ = {
+		8754D9BB293141E8002BFE73 /* 1. Basic */ = {
 			isa = PBXGroup;
 			children = (
 				87A232AD292F56E100B5EC64 /* BasicView.swift */,
 				8754D9B9293140E3002BFE73 /* BasicViewWithSmartBinding.swift */,
-				8754D9BC2931420F002BFE73 /* VIews */,
+				8754D9BC2931420F002BFE73 /* Views */,
 			);
-			path = "1. BasicView";
+			path = "1. Basic";
 			sourceTree = "<group>";
 		};
-		8754D9BC2931420F002BFE73 /* VIews */ = {
+		8754D9BC2931420F002BFE73 /* Views */ = {
 			isa = PBXGroup;
 			children = (
 				8754D9BD29314272002BFE73 /* TransitionStylePicker.swift */,
 			);
-			path = VIews;
+			path = Views;
 			sourceTree = "<group>";
 		};
 		87A2326E292F2C8B00B5EC64 = {
@@ -170,9 +174,10 @@
 				87A2327A292F2C8B00B5EC64 /* SampleApp.swift */,
 				87A2327C292F2C8B00B5EC64 /* ContentView.swift */,
 				872159B42932B86F009FBE07 /* Helpers */,
-				8754D9BB293141E8002BFE73 /* 1. BasicView */,
-				872159A929317ECF009FBE07 /* 2. CardList */,
-				872159AA29317EE0009FBE07 /* 3. CardDecks */,
+				8754D9BB293141E8002BFE73 /* 1. Basic */,
+				87F5A3B929369ED50029D2D8 /* 2. Button */,
+				872159A929317ECF009FBE07 /* 3. Cards */,
+				872159AA29317EE0009FBE07 /* 4. Decks */,
 				87A2327E292F2C8C00B5EC64 /* Assets.xcassets */,
 				87A23280292F2C8C00B5EC64 /* Preview Content */,
 			);
@@ -217,6 +222,23 @@
 				87A232A9292F322700B5EC64 /* TransitionKit */,
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		87F5A3B929369ED50029D2D8 /* 2. Button */ = {
+			isa = PBXGroup;
+			children = (
+				87F5A3BB29369EFE0029D2D8 /* CartView.swift */,
+				87F5A3BD2936A1170029D2D8 /* CheckoutView.swift */,
+				87F5A3BF2936A46D0029D2D8 /* Views */,
+			);
+			path = "2. Button";
+			sourceTree = "<group>";
+		};
+		87F5A3BF2936A46D0029D2D8 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -354,6 +376,8 @@
 			files = (
 				8754D9BE29314272002BFE73 /* TransitionStylePicker.swift in Sources */,
 				87F5A3B229367AE40029D2D8 /* DeckListView.swift in Sources */,
+				87F5A3BE2936A1170029D2D8 /* CheckoutView.swift in Sources */,
+				87F5A3BC2936A0EB0029D2D8 /* CartView.swift in Sources */,
 				872159B3293229DA009FBE07 /* SimpsonsCharacterDetail.swift in Sources */,
 				87A2327D292F2C8B00B5EC64 /* ContentView.swift in Sources */,
 				872159B1293224D0009FBE07 /* SimpsonsCharacterCardContent.swift in Sources */,

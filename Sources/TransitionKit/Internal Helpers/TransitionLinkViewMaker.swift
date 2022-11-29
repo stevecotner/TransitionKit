@@ -10,11 +10,11 @@ import SwiftUI
 struct TransitionLinkViewMaker<Content> where Content: View {
     var id: String
     var transitionWrapperID: String
-    let showsXButton: Bool
+    let showsDefaultCloseButton: Bool
     let transitionStyle: TransitionStyle
     var resetActive: () -> Void
     var removeSelfFromViewMakers: (String) -> Void
-    var content: (@escaping TransitionUnwindAction) -> Content
+    var content: (@escaping TransitionCloseAction) -> Content
     var typeErasedViewMaker: TypeErasedTransitionLinkViewMaker {
         let anyfiedContent = {
             AnyView(
@@ -30,7 +30,7 @@ struct TransitionLinkViewMaker<Content> where Content: View {
         return TypeErasedTransitionLinkViewMaker(
             id: id,
             transitionWrapperID: transitionWrapperID,
-            showsXButton: showsXButton,
+            showsDefaultCloseButton: showsDefaultCloseButton,
             transitionStyle: transitionStyle,
             resetActive: resetActive,
             content: anyfiedContent
@@ -41,7 +41,7 @@ struct TransitionLinkViewMaker<Content> where Content: View {
 struct TypeErasedTransitionLinkViewMaker {
     var id: String
     var transitionWrapperID: String
-    let showsXButton: Bool
+    let showsDefaultCloseButton: Bool
     let transitionStyle: TransitionStyle
     var resetActive: () -> Void
     var content: () -> AnyView

@@ -41,7 +41,7 @@ public struct TransitionView<Content>: View where Content: View {
                     ZStack(alignment: .top) {
                         viewMaker.content()
                         
-                        if viewMaker.showsXButton {
+                        if viewMaker.showsDefaultCloseButton {
                             VStack {
                                 HStack {
                                     Spacer()

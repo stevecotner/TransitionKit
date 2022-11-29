@@ -7,34 +7,34 @@
 
 import SwiftUI
 
-public typealias TransitionUnwindAction = () -> Void
+public typealias TransitionCloseAction = () -> Void
 
 public struct TransitionLink<Content>: View where Content: View {
     let viewMakerID: String
     let transitionWrapperID: String
     
     @Binding var isActive: Bool
-    var transitionStyle: TransitionStyle = .splitVertical
-    var showsXButton = true
+    var transitionStyle: TransitionStyle
+    var showsDefaultCloseButton: Bool
     
     @EnvironmentObject var transitionModel: TransitionModel
     
     // The view we will "expand" to.
-    var destination: (@escaping TransitionUnwindAction) -> Content
+    var destination: (@escaping TransitionCloseAction) -> Content
     
     public init(
         viewMakerID: String,
         transitionWrapperID: String,
         isActive: Binding<Bool>,
         transitionStyle: TransitionStyle = .splitVertical,
-        showsXButton: Bool = true,
-        destination: @escaping (@escaping TransitionUnwindAction) -> Content
+        showsDefaultCloseButton: Bool = true,
+        destination: @escaping (@escaping TransitionCloseAction) -> Content
     ) {
         self.viewMakerID = viewMakerID
         self.transitionWrapperID = transitionWrapperID
         _isActive = isActive
         self.transitionStyle = transitionStyle
-        self.showsXButton = showsXButton
+        self.showsDefaultCloseButton = showsDefaultCloseButton
         self.destination = destination
     }
     
@@ -47,7 +47,7 @@ public struct TransitionLink<Content>: View where Content: View {
                     let viewMaker = TransitionLinkViewMaker(
                         id: viewMakerID,
                         transitionWrapperID: transitionWrapperID,
-                        showsXButton: showsXButton,
+                        showsDefaultCloseButton: showsDefaultCloseButton,
                         transitionStyle: transitionStyle,
                         resetActive: { isActive = false },
                         removeSelfFromViewMakers: transitionModel.remove,

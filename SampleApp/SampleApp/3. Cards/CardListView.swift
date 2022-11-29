@@ -124,9 +124,9 @@ struct CardListView: View {
                             transitionWrapperID: horizontalID,
                             isActive: horizontalBinding(for: character),
                             transitionStyle: horizontalTransitionStyle,
-                            showsXButton: false
-                        ) { unwindAction in
-                            SimpsonsCharacterDetail(character: character, matchedGeometryID: horizontalID, unwindAction: unwindAction)
+                            showsDefaultCloseButton: false
+                        ) { closeAction in
+                            SimpsonsCharacterDetail(character: character, matchedGeometryID: horizontalID, closeAction: closeAction)
                         }
                         
                         TransitionLink(
@@ -134,9 +134,9 @@ struct CardListView: View {
                             transitionWrapperID: verticalID,
                             isActive: verticalBinding(for: character),
                             transitionStyle: verticalTransitionStyle,
-                            showsXButton: false
-                        ) { unwindAction in
-                            SimpsonsCharacterDetail(character: character, matchedGeometryID: verticalID, unwindAction: unwindAction)
+                            showsDefaultCloseButton: false
+                        ) { closeAction in
+                            SimpsonsCharacterDetail(character: character, matchedGeometryID: verticalID, closeAction: closeAction)
                         }
                     }
                     
