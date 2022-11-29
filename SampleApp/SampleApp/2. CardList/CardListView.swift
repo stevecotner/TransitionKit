@@ -33,8 +33,8 @@ struct CardListView: View {
     var body: some View {
         GeometryReader { geometry in
             TransitionView { namespace in
-                ScrollView {
-                    ZStack {
+                ZStack {
+                    ScrollView {
                         VStack(alignment: .leading, spacing: 30) {
                             Text("Cards")
                                 .padding(.horizontal, 30)
@@ -111,40 +111,41 @@ struct CardListView: View {
                             Spacer()
                         }
                         
-                        // Links
+                    }
+                    
+                    // Links
+                    
+                    ForEach(characters, id: \.id) { character in
+                        let horizontalID = character.id + "horizontal"
+                        let verticalID = character.id + "vertical"
                         
-                        ForEach(characters, id: \.id) { character in
-                            let horizontalID = character.id + "horizontal"
-                            let verticalID = character.id + "vertical"
-                            
-                            TransitionLink(
-                                viewMakerID: horizontalID,
-                                transitionWrapperID: horizontalID,
-                                isActive: horizontalBinding(for: character),
-                                transitionStyle: horizontalTransitionStyle,
-                                showsXButton: false
-                            ) { unwindAction in
-                                SimpsonsCharacterDetail(character: character, matchedGeometryID: horizontalID, unwindAction: unwindAction)
-                            }
-                            
-                            TransitionLink(
-                                viewMakerID: verticalID,
-                                transitionWrapperID: verticalID,
-                                isActive: verticalBinding(for: character),
-                                transitionStyle: verticalTransitionStyle,
-                                showsXButton: false
-                            ) { unwindAction in
-                                SimpsonsCharacterDetail(character: character, matchedGeometryID: verticalID, unwindAction: unwindAction)
-                            }
+                        TransitionLink(
+                            viewMakerID: horizontalID,
+                            transitionWrapperID: horizontalID,
+                            isActive: horizontalBinding(for: character),
+                            transitionStyle: horizontalTransitionStyle,
+                            showsXButton: false
+                        ) { unwindAction in
+                            SimpsonsCharacterDetail(character: character, matchedGeometryID: horizontalID, unwindAction: unwindAction)
                         }
                         
-                        if hideTabBar {
-                            Color.clear
-                                .toolbar(.hidden, for: .tabBar)
+                        TransitionLink(
+                            viewMakerID: verticalID,
+                            transitionWrapperID: verticalID,
+                            isActive: verticalBinding(for: character),
+                            transitionStyle: verticalTransitionStyle,
+                            showsXButton: false
+                        ) { unwindAction in
+                            SimpsonsCharacterDetail(character: character, matchedGeometryID: verticalID, unwindAction: unwindAction)
                         }
                     }
+                    
+                    if hideTabBar {
+                        Color.clear
+                            .toolbar(.hidden, for: .tabBar)
+                    }
                 }
-        }
+            }
         }
     }
     

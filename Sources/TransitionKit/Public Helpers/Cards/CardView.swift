@@ -6,14 +6,19 @@
 //
 
 import SwiftUI
-import TransitionKit
 
-struct CardView<Content>: View where Content: View {
-    var cornerRadius: CGFloat = 14
-    var matchedGeometryID: String
-    var content: () -> Content
+public struct CardView<Content>: View where Content: View {
+    private var cornerRadius: CGFloat
+    private var matchedGeometryID: String
+    private var content: () -> Content
     
-    var body: some View {
+    public init(cornerRadius: CGFloat = 14, matchedGeometryID: String, content: @escaping () -> Content) {
+        self.cornerRadius = cornerRadius
+        self.matchedGeometryID = matchedGeometryID
+        self.content = content
+    }
+    
+    public var body: some View {
         TransitionNamespaceReader { namespace in
             content()
                 .mask(

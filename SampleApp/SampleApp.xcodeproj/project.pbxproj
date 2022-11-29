@@ -8,10 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		872159AC29318677009FBE07 /* CardListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872159AB29317EED009FBE07 /* CardListView.swift */; };
-		872159AF293187A5009FBE07 /* CardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872159AE293187A5009FBE07 /* CardView.swift */; };
 		872159B1293224D0009FBE07 /* SimpsonsCharacterCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872159B0293224D0009FBE07 /* SimpsonsCharacterCardContent.swift */; };
 		872159B3293229DA009FBE07 /* SimpsonsCharacterDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872159B2293229DA009FBE07 /* SimpsonsCharacterDetail.swift */; };
-		872159B62932B88B009FBE07 /* PushButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872159B52932B88B009FBE07 /* PushButton.swift */; };
 		872159B82932C786009FBE07 /* SimpsonsCharacter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 872159B72932C786009FBE07 /* SimpsonsCharacter.swift */; };
 		8754D9BA293140E3002BFE73 /* BasicViewWithSmartBinding.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754D9B9293140E3002BFE73 /* BasicViewWithSmartBinding.swift */; };
 		8754D9BE29314272002BFE73 /* TransitionStylePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8754D9BD29314272002BFE73 /* TransitionStylePicker.swift */; };
@@ -24,6 +22,7 @@
 		87A23298292F2C8D00B5EC64 /* SampleAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A23297292F2C8D00B5EC64 /* SampleAppUITestsLaunchTests.swift */; };
 		87A232AC292F32A500B5EC64 /* TransitionKit in Frameworks */ = {isa = PBXBuildFile; productRef = 87A232AB292F32A500B5EC64 /* TransitionKit */; };
 		87A232AE292F56E100B5EC64 /* BasicView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87A232AD292F56E100B5EC64 /* BasicView.swift */; };
+		87F5A3B229367AE40029D2D8 /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3B1293679EB0029D2D8 /* DeckListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,10 +44,8 @@
 
 /* Begin PBXFileReference section */
 		872159AB29317EED009FBE07 /* CardListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardListView.swift; sourceTree = "<group>"; };
-		872159AE293187A5009FBE07 /* CardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardView.swift; sourceTree = "<group>"; };
 		872159B0293224D0009FBE07 /* SimpsonsCharacterCardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpsonsCharacterCardContent.swift; sourceTree = "<group>"; };
 		872159B2293229DA009FBE07 /* SimpsonsCharacterDetail.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpsonsCharacterDetail.swift; sourceTree = "<group>"; };
-		872159B52932B88B009FBE07 /* PushButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PushButton.swift; sourceTree = "<group>"; };
 		872159B72932C786009FBE07 /* SimpsonsCharacter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpsonsCharacter.swift; sourceTree = "<group>"; };
 		8754D9B9293140E3002BFE73 /* BasicViewWithSmartBinding.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicViewWithSmartBinding.swift; sourceTree = "<group>"; };
 		8754D9BD29314272002BFE73 /* TransitionStylePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionStylePicker.swift; sourceTree = "<group>"; };
@@ -64,6 +61,7 @@
 		87A23297292F2C8D00B5EC64 /* SampleAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SampleAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		87A232A9292F322700B5EC64 /* TransitionKit */ = {isa = PBXFileReference; lastKnownFileType = wrapper; name = TransitionKit; path = ..; sourceTree = "<group>"; };
 		87A232AD292F56E100B5EC64 /* BasicView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasicView.swift; sourceTree = "<group>"; };
+		87F5A3B1293679EB0029D2D8 /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +103,7 @@
 		872159AA29317EE0009FBE07 /* 3. CardDecks */ = {
 			isa = PBXGroup;
 			children = (
+				87F5A3B1293679EB0029D2D8 /* DeckListView.swift */,
 			);
 			path = "3. CardDecks";
 			sourceTree = "<group>";
@@ -121,8 +120,6 @@
 		872159B42932B86F009FBE07 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				872159B52932B88B009FBE07 /* PushButton.swift */,
-				872159AE293187A5009FBE07 /* CardView.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -355,9 +352,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				872159AF293187A5009FBE07 /* CardView.swift in Sources */,
-				872159B62932B88B009FBE07 /* PushButton.swift in Sources */,
 				8754D9BE29314272002BFE73 /* TransitionStylePicker.swift in Sources */,
+				87F5A3B229367AE40029D2D8 /* DeckListView.swift in Sources */,
 				872159B3293229DA009FBE07 /* SimpsonsCharacterDetail.swift in Sources */,
 				87A2327D292F2C8B00B5EC64 /* ContentView.swift in Sources */,
 				872159B1293224D0009FBE07 /* SimpsonsCharacterCardContent.swift in Sources */,

@@ -27,6 +27,11 @@ struct ContentView: View {
                 .tabItem {
                     Label("Cards", systemImage: "person.crop.square")
                 }
+            
+            DeckListView()
+                .tabItem {
+                    Label("Decks", systemImage: "rectangle.stack")
+                }
         }
     }
 }
