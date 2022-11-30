@@ -17,10 +17,13 @@ public struct TransitionLink<Content>: View where Content: View {
     var transitionStyle: TransitionStyle
     var showsDefaultCloseButton: Bool
     
-    @EnvironmentObject var transitionModel: TransitionModel
+    /// Run after we close the link
+    var closeCompletion: (() -> Void)?
     
-    // The view we will "expand" to.
+    /// The view we will "expand" to.
     var destination: (@escaping TransitionCloseAction) -> Content
+    
+    @EnvironmentObject var transitionModel: TransitionModel
     
     public init(
         viewMakerID: String,
@@ -28,6 +31,7 @@ public struct TransitionLink<Content>: View where Content: View {
         isActive: Binding<Bool>,
         transitionStyle: TransitionStyle = .splitVertical,
         showsDefaultCloseButton: Bool = true,
+        closeCompletion: (() -> Void)? = nil,
         destination: @escaping (@escaping TransitionCloseAction) -> Content
     ) {
         self.viewMakerID = viewMakerID
@@ -35,6 +39,7 @@ public struct TransitionLink<Content>: View where Content: View {
         _isActive = isActive
         self.transitionStyle = transitionStyle
         self.showsDefaultCloseButton = showsDefaultCloseButton
+        self.closeCompletion = closeCompletion
         self.destination = destination
     }
     
@@ -57,6 +62,7 @@ public struct TransitionLink<Content>: View where Content: View {
                     transitionModel.add(viewMaker.typeErasedViewMaker)
                 } else {
                     transitionModel.remove(viewMakerID)
+                    closeCompletion?()
                 }
             }
     }

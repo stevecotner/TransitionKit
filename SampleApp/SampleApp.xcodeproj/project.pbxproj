@@ -25,6 +25,8 @@
 		87F5A3B229367AE40029D2D8 /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3B1293679EB0029D2D8 /* DeckListView.swift */; };
 		87F5A3BC2936A0EB0029D2D8 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3BB29369EFE0029D2D8 /* CartView.swift */; };
 		87F5A3BE2936A1170029D2D8 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3BD2936A1170029D2D8 /* CheckoutView.swift */; };
+		87F5A3C82936F8F00029D2D8 /* GermanEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3C72936F8F00029D2D8 /* GermanEntry.swift */; };
+		87F5A3CA2936FA700029D2D8 /* GermanCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3C92936FA700029D2D8 /* GermanCardContent.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		87F5A3B1293679EB0029D2D8 /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
 		87F5A3BB29369EFE0029D2D8 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		87F5A3BD2936A1170029D2D8 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
+		87F5A3C72936F8F00029D2D8 /* GermanEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GermanEntry.swift; sourceTree = "<group>"; };
+		87F5A3C92936FA700029D2D8 /* GermanCardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GermanCardContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -108,6 +112,8 @@
 			isa = PBXGroup;
 			children = (
 				87F5A3B1293679EB0029D2D8 /* DeckListView.swift */,
+				87F5A3C72936F8F00029D2D8 /* GermanEntry.swift */,
+				87F5A3C92936FA700029D2D8 /* GermanCardContent.swift */,
 			);
 			path = "4. Decks";
 			sourceTree = "<group>";
@@ -379,6 +385,7 @@
 				87F5A3BE2936A1170029D2D8 /* CheckoutView.swift in Sources */,
 				87F5A3BC2936A0EB0029D2D8 /* CartView.swift in Sources */,
 				872159B3293229DA009FBE07 /* SimpsonsCharacterDetail.swift in Sources */,
+				87F5A3CA2936FA700029D2D8 /* GermanCardContent.swift in Sources */,
 				87A2327D292F2C8B00B5EC64 /* ContentView.swift in Sources */,
 				872159B1293224D0009FBE07 /* SimpsonsCharacterCardContent.swift in Sources */,
 				872159B82932C786009FBE07 /* SimpsonsCharacter.swift in Sources */,
@@ -386,6 +393,7 @@
 				87A232AE292F56E100B5EC64 /* BasicView.swift in Sources */,
 				872159AC29318677009FBE07 /* CardListView.swift in Sources */,
 				87A2327B292F2C8B00B5EC64 /* SampleApp.swift in Sources */,
+				87F5A3C82936F8F00029D2D8 /* GermanEntry.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

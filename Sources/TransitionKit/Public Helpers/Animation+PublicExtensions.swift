@@ -9,10 +9,10 @@ import SwiftUI
 
 extension Animation {
     public static var transitionAdd: Self {
-        .interpolatingSpring(mass: 0.039, stiffness: 2.75, damping: 0.55, initialVelocity: 0.1)
+        .interpolatingSpring(mass: 0.042, stiffness: 2.75, damping: 0.6, initialVelocity: 0.1)
     }
     
     public static var transitionRemove: Self {
-        interpolatingSpring(mass: 0.039, stiffness: 4.5, damping: 0.95, initialVelocity: 0.1)
+        interpolatingSpring(mass: 0.045, stiffness: 4.0, damping: 0.85, initialVelocity: 0.01)
     }
 }

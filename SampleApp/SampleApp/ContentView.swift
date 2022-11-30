@@ -17,6 +17,13 @@ struct ContentView: View {
     }
     
     var body: some View {
+        /**
+         Note: when we put a view here directly, instead of in a TabView,
+         all animations work correctly the first time.
+         But if we put our views inside a TabView, any animations that expand below the tab bar will either have to run once before they work correctly, or we'll have to remove the tab bar before we animate.
+         `DeckListView` offers a clear example of this.
+         */
+        
         TabView {
             BasicView()
                 .tabItem {
@@ -37,6 +44,9 @@ struct ContentView: View {
                 .tabItem {
                     Label("Decks", systemImage: "rectangle.stack")
                 }
+        }
+        .onAppear() {
+            //
         }
         .accentColor(Color(UIColor.systemPink))
     }

@@ -46,7 +46,6 @@ struct CheckoutView: View {
                         Spacer()
                     }
                     .padding(.horizontal, 20)
-                    .frame(maxWidth: .infinity)
                 }
                 .background(
                     RoundedRectangle(cornerRadius: 20, style: SwiftUI.RoundedCornerStyle.continuous)

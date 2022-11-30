@@ -12,26 +12,31 @@ struct CartView: View {
     @State var showCheckout = false
     @State var transitionStyle: TransitionStyle = .splitVertical
     
+    let horizontalPadding: CGFloat = 22
+    
     var body: some View {
         TransitionView { namespace in
             ZStack {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
-                        Text("Button")
-                            .font(.title.bold())
-                            .padding(.horizontal, 20)
-                            .padding(.top, 20)
-                            .padding(.bottom, 10)
+                        HStack {
+                            Text("Button")
+                                .font(.title.bold())
+                            Spacer()
+                        }
+                        .padding(.horizontal, horizontalPadding)
+                        .padding(.top, 20)
+                        .padding(.bottom, 20)
                         
                         Text(
                             """
-                            In this example, a button grows to take over the whole screen. Its title becomes the title of the new screen.
+                            Tap the "Checkout" button to see it take over the whole screen. Its title becomes the title of the new screen. Other elements appear as screen expands.
                             """)
-                        .padding(.horizontal, 20)
-                        .padding(.bottom, 10)
+                        .padding(.horizontal, horizontalPadding)
+                        .padding(.bottom, 20)
                         
                         TransitionStylePicker(transitionStyle: $transitionStyle)
-                            .padding(.horizontal, 20)
+                            .padding(.horizontal, horizontalPadding)
                         
                         Spacer()
                     }
@@ -44,6 +49,7 @@ struct CartView: View {
                             ZStack(alignment: .trailing) {
                                 VStack {
                                     HStack {
+                                        Spacer()
                                         Text("Checkout")
                                             .minimumScaleFactor(0.1)
                                             .matchedGeometryEffect(id: "checkouttitle", in: namespace)
@@ -58,6 +64,7 @@ struct CartView: View {
                                             )
                                             .padding(.horizontal, 20)
                                             .padding(.bottom, 20)
+                                        Spacer()
                                     }
                                     VStack {
                                         Text("")
@@ -73,6 +80,35 @@ struct CartView: View {
                                     .frame(height: 0)
                                 }
                                 .allowsHitTesting(false)
+                                
+                                VStack(alignment: .leading) {
+                                    Spacer()
+                                    HStack {
+                                        Spacer()
+                                        Button {
+                                            //
+                                        } label: {
+                                            Text("Place Order")
+                                                .minimumScaleFactor(0.1)
+                                                .font(.title3.bold())
+                                                .foregroundColor(.white)
+                                                .padding(.vertical, 12)
+                                                .padding(.horizontal, 40)
+                                                .background(
+                                                    RoundedRectangle(cornerRadius: 30, style: SwiftUI.RoundedCornerStyle.continuous)
+                                                        .fill(Color(UIColor.systemPink))
+                                                        .foregroundColor(.white)
+                                                )
+                                                .padding(.bottom, 60)
+                                        }
+                                        .matchedGeometryEffect(id: "checkoutfloatbottom", in: namespace)
+                                        .frame(height: 0)
+                                        .clipped()
+                                        Spacer()
+                                    }
+                                }
+                                .allowsHitTesting(false)
+                                .frame(height: 0)
                             }
                         }
                             .buttonStyle(PushButton())
@@ -90,31 +126,6 @@ struct CartView: View {
                 { closeAction in
                     CheckoutView(closeAction: closeAction)
                 }
-                
-                VStack(alignment: .center) {
-                    Spacer()
-                    Button {
-                        //
-                    } label: {
-                        Text("Place Order")
-                            .minimumScaleFactor(0.1)
-                            .font(.title3.bold())
-                            .foregroundColor(.white)
-                            .padding(.vertical, 12)
-                            .padding(.horizontal, 40)
-                            .background(
-                                RoundedRectangle(cornerRadius: 30, style: SwiftUI.RoundedCornerStyle.continuous)
-                                    .fill(Color(UIColor.systemPink))
-                                    .foregroundColor(.white)
-                            )
-                            .padding(.bottom, 60)
-                    }
-                    .matchedGeometryEffect(id: "checkoutfloatbottom", in: namespace)
-                    .frame(height: 0)
-                    .clipped()
-                }
-                .allowsHitTesting(false)
-                .padding(.bottom, 40)
             }
         }
     }

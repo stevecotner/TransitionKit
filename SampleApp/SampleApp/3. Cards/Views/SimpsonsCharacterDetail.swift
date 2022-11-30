@@ -27,17 +27,17 @@ struct SimpsonsCharacterDetail: View {
                             VStack(spacing: 0) {
                                 Spacer()
                                     .frame(height: geometry.safeAreaInsets.top + 20)
-                                
+
                                 Image(character.imageName)
                                     .resizable()
                                     .aspectRatio(contentMode: .fit)
-                                    .layoutPriority(2)
+                                    .minimumScaleFactor(0.1)
                                     .matchedGeometryEffect(id: matchedGeometryID + "image", in: namespace)
+                                    .frame(height: 500)
                                 
                                 HStack {
                                     Text(character.name)
                                         .font(.title3.bold())
-                                        .layoutPriority(2)
                                     Spacer()
                                 }
                                 .matchedGeometryEffect(id: matchedGeometryID + "name", in: namespace)
@@ -48,7 +48,6 @@ struct SimpsonsCharacterDetail: View {
                                     HStack {
                                         Text(character.description)
                                             .fixedSize(horizontal: false, vertical: true)
-                                            .layoutPriority(2)
                                         Spacer()
                                     }
                                     .matchedGeometryEffect(id: matchedGeometryID + "additionalcontent", in: namespace)

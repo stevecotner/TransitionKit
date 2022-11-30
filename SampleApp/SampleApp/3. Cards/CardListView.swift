@@ -30,6 +30,8 @@ struct CardListView: View {
     @State private var horizontalTransitionStyle = TransitionStyle.fade
     @State private var verticalTransitionStyle = TransitionStyle.splitVertical
     
+    let horizontalPadding: CGFloat = 22
+    
     var body: some View {
         GeometryReader { geometry in
             TransitionView { namespace in
@@ -37,19 +39,25 @@ struct CardListView: View {
                     ScrollView {
                         VStack(alignment: .leading, spacing: 30) {
                             Text("Cards")
-                                .padding(.horizontal, 30)
+                                .padding(.horizontal, horizontalPadding)
                                 .padding(.top, 20)
                                 .font(.title.bold())
                             
+                            Text(
+                                """
+                                Tap any card to see it take over the screen. Its image and title move to new positions. A description appears after half a second.
+                                """)
+                            .padding(.horizontal, horizontalPadding)
+                            .padding(.top, -10)
+                            
                             Text("Horizontal")
-                                .padding(.horizontal, 30)
-                                .padding(.top, 20)
+                                .padding(.horizontal, horizontalPadding)
                                 .font(.title3.bold())
                             
                             TransitionStylePicker(transitionStyle: $horizontalTransitionStyle)
                                 .zIndex(2)
-                                .padding(.horizontal, 30)
-                                .padding(.top, -10)
+                                .padding(.horizontal, horizontalPadding)
+                                .padding(.top, -20)
                             
                             ScrollView(.horizontal, showsIndicators: false) {
                                 HStack(spacing: 20) {
@@ -71,7 +79,7 @@ struct CardListView: View {
                                         }
                                     }
                                 }
-                                .padding(.horizontal, 30)
+                                .padding(.horizontal, horizontalPadding)
                                 .padding(.vertical, 100)
                                 .zIndex(1)
                             }
@@ -81,15 +89,14 @@ struct CardListView: View {
                             .zIndex(1)
                             
                             Text("Vertical")
-                                .padding(.horizontal, 30)
+                                .padding(.horizontal, horizontalPadding)
                                 .padding(.top, 20)
-                                
                                 .font(.title3.bold())
                             
                             TransitionStylePicker(transitionStyle: $verticalTransitionStyle)
                                 .zIndex(2)
-                                .padding(.horizontal, 30)
-                                .padding(.top, -10)
+                                .padding(.horizontal, horizontalPadding)
+                                .padding(.top, -20)
                             
                             ForEach(characters, id: \.id) { character in
                                 let id = character.id + "vertical"
@@ -102,7 +109,7 @@ struct CardListView: View {
                                             SimpsonsCharacterCardContent(character: character, matchedGeometryID: id)
                                         }
                                         .matchedGeometryEffect(id: id + "wholecard", in: namespace)
-                                        .padding(.horizontal, 30)
+                                        .padding(.horizontal, horizontalPadding)
                                     }
                                     .buttonStyle(PushButton())
                                 }
@@ -110,7 +117,6 @@ struct CardListView: View {
                             
                             Spacer()
                         }
-                        
                     }
                     
                     // Links

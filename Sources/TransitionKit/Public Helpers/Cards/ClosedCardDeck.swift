@@ -35,11 +35,12 @@ public struct ClosedCardDeck<Item: StringIdentifiable, CardContent>: View where 
             VStack(alignment: .leading) {
                 HStack {
                     Text(title)
-                        .id(matchedGeometryID + "CardDeckTitle\(title)")
                         .matchedGeometryEffect(id: matchedGeometryID + "CardDeckTitle\(title)", in: namespace)
+                        .minimumScaleFactor(0.1)
                         .font(.title2.bold())
                     Spacer(minLength: 0)
                 }
+                .matchedGeometryEffect(id: matchedGeometryID + "CardDeckTitleStack\(title)", in: namespace)
                 
                 Button {
                     tapAction()
@@ -63,7 +64,7 @@ public struct ClosedCardDeck<Item: StringIdentifiable, CardContent>: View where 
                             let item = items[index]
                             
                             DummyCardView(matchedGeometryID: matchedGeometryID + item.id, shouldShowShadow: shadow(for: index))
-                                .matchedGeometryEffect(id: matchedGeometryID + "card" + item.id, in: namespace)
+                                .matchedGeometryEffect(id: matchedGeometryID + "wholecard" + item.id, in: namespace)
                                 .padding(.horizontal, padding(for: index))
                                 .offset(y: offset(for: index))
                                 .opacity(opacity(for: index))
@@ -94,7 +95,7 @@ public struct ClosedCardDeck<Item: StringIdentifiable, CardContent>: View where 
         }
         
         func padding(for index: Int) -> CGFloat {
-            CGFloat((min(6, index)) * 10)
+            CGFloat((min(12, index)) * 10)
         }
         
         func offset(for index: Int) -> CGFloat {

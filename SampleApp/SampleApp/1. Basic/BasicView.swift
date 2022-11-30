@@ -17,56 +17,72 @@ struct BasicView: View {
     
     @State var transitionStyle: TransitionStyle = .fade
     
+    let horizontalPadding: CGFloat = 22
+    
     var body: some View {
         TransitionView { namespace in
-            VStack(alignment: .leading, spacing: 0) {
-                Text("Basic")
-                    .font(.title.bold())
-                    .padding(.horizontal, 20)
+            ScrollView {
+                VStack(alignment: .leading, spacing: 0) {
+                    HStack {
+                        Text("Basic")
+                            .font(.title.bold())
+                        Spacer()
+                    }
+                    .padding(.horizontal, horizontalPadding)
                     .padding(.top, 20)
-                    .padding(.bottom, 10)
-                
-                TransitionStylePicker(transitionStyle: $transitionStyle)
-                    .padding(.horizontal, 20)
-                
-                Spacer()
-                
-                VStack(alignment: .center, spacing: 20) {
-                    ForEach(Array(1...5), id: \.self) { number in
-                        let id = String(number)
-                        
-                        TransitionWrapper(id: id) {
-                            Button {
-                                action(for: number)
-                            } label: {
-                                Text(id)
-                                    .matchedGeometryEffect(id: id, in: namespace)
+                    .padding(.bottom, 20)
+                    
+                    Text(
+                        """
+                        Tap a number to see it take over the screen. The transition relies on a MatchedGeometryEffect that makes two separate views appear (more or less) like a single view moving between two states.
+                        """)
+                    .padding(.horizontal, horizontalPadding)
+                    .padding(.bottom, 20)
+                    
+                    TransitionStylePicker(transitionStyle: $transitionStyle)
+                        .padding(.horizontal, horizontalPadding)
+                        .padding(.bottom, 80)
+                    
+                    VStack(alignment: .center, spacing: 20) {
+                        ForEach(Array(1...5), id: \.self) { number in
+                            let id = String(number)
+                            
+                            TransitionWrapper(id: id) {
+                                Button {
+                                    action(for: number)
+                                } label: {
+                                    Text(id)
+                                        .minimumScaleFactor(0.1)
+                                        .matchedGeometryEffect(id: id, in: namespace)
+                                }
                             }
                         }
                     }
-                }
-                
-                Spacer()
-                
-                // Links
-                
-                ForEach(Array(1...5), id: \.self) { number in
-                    let id = String(number)
                     
-                    TransitionLink(
-                        viewMakerID: id,
-                        transitionWrapperID: id,
-                        isActive: binding(for: number),
-                        transitionStyle: transitionStyle) { _ in
-                            VStack(alignment: .leading) {
-                                Spacer()
-                                    .frame(height: 20)
-                                Text(id)
-                                    .matchedGeometryEffect(id: id, in: namespace)
-                                    .scaleEffect(2)
-                                Spacer()
+                    Spacer()
+                    
+                    // Links
+                    
+                    ForEach(Array(1...5), id: \.self) { number in
+                        let id = String(number)
+                        
+                        TransitionLink(
+                            viewMakerID: id,
+                            transitionWrapperID: id,
+                            isActive: binding(for: number),
+                            transitionStyle: transitionStyle) { _ in
+                                VStack(alignment: .leading) {
+                                    Spacer()
+                                        .frame(height: 20)
+                                    Text(id)
+                                        .font(Font.system(size: 96))
+                                        .foregroundColor(Color(UIColor.systemPink))
+                                        .minimumScaleFactor(0.1)
+                                        .matchedGeometryEffect(id: id, in: namespace)
+                                    Spacer()
+                                }
                             }
-                        }
+                    }
                 }
             }
         }
