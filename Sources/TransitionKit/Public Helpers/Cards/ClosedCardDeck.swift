@@ -60,10 +60,10 @@ public struct ClosedCardDeck<Item: StringIdentifiable, CardContent>: View where 
                 ZStack(alignment: .bottom) {
                     // Buried Cards
                     if items.count > 1 {
-                        ForEach(1..<items.count, id: \.self) { index in
+                        ForEach(1..<min(50, items.count), id: \.self) { index in
                             let item = items[index]
                             
-                            DummyCardView(matchedGeometryID: matchedGeometryID + item.id, shouldShowShadow: shadow(for: index))
+                            DummyCardView(matchedGeometryID: matchedGeometryID + item.id, shadowOpacity: shadowOpacity(for: index))
                                 .matchedGeometryEffect(id: matchedGeometryID + "wholecard" + item.id, in: namespace)
                                 .padding(.horizontal, padding(for: index))
                                 .offset(y: offset(for: index))
@@ -90,20 +90,31 @@ public struct ClosedCardDeck<Item: StringIdentifiable, CardContent>: View where 
             }
         }
         
-        func shadow(for index: Int) -> Bool {
-            index < 3 ? true : false
+        func shadowOpacity(for index: Int) -> CGFloat {
+            index < 2 ? 0.2 :
+            index == 2 ? (items.count > 3 ? 0.13 : 0.2) :
+            index == 3 ? (items.count > 4 ? 0.06 : 0.09) :
+            index == 4 ? (items.count > 4 ? 0.03 : 0.04) :
+            index == 5 ? 0.02 :
+            0.001
         }
         
         func padding(for index: Int) -> CGFloat {
-            CGFloat((min(12, index)) * 10)
+            CGFloat((min(6, index)) * 10)
         }
         
         func offset(for index: Int) -> CGFloat {
-            index == 1 ? 10 : 20
+            index == 1 ? 10 :
+            index == 2 ? 20 :
+            index == 3 ? 20.02 :
+            index == 4 ? 20.03 :
+            index == 5 ? 20.04 :
+            20.04
         }
         
         func opacity(for index: Int) -> CGFloat {
-            index < 4 ? 1 : 0.001
+            index < 6 ? 1 :
+            0.001
         }
     }
 }

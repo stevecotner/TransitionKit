@@ -12,7 +12,8 @@ struct DeckListView: View {
     @State var isGermanDeckExpanded = false
     @State private var hideTabBar = false
     
-    let germanEntries = GermanEntry.makeEntries()
+    let germanNouns = GermanNoun.makeNouns()
+    let horizontalPadding: CGFloat = 22
     
     var body: some View {
         TransitionView { namespace in
@@ -20,16 +21,20 @@ struct DeckListView: View {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 30) {
                         Text("Decks")
-                            .padding(.horizontal, 22)
+                            .padding(.horizontal, horizontalPadding)
                             .padding(.top, 20)
+                            .padding(.bottom, -10)
                             .font(.title.bold())
                         
+                        Text("Tap the card deck to show all of its cards. When you close it, the animation is tuned so that you'll see the fourth, fifth, and sixth cards fold under the deck. The rest of the cards fade away.")
+                            .padding(.horizontal, horizontalPadding)
+                            
                         // German Deck
                         TransitionWrapper(id: "german") {
                             ClosedCardDeck(
                                 matchedGeometryID: "german",
-                                title: "German",
-                                items: germanEntries,
+                                title: "German Nouns",
+                                items: germanNouns,
                                 tapAction: {
                                     hideTabBar = true
                                     isGermanDeckExpanded = true
@@ -38,9 +43,14 @@ struct DeckListView: View {
                                     GermanCardContent(entry: entry)
                                 }
                             )
-                            .padding(.horizontal, 22)
+                            .padding(.horizontal, horizontalPadding)
                         }
                         
+                        Text("The next deck goes two levels in: first it expands to show all its cards, and then each individual card can expand to show its own detail. Both transitions rely on the same top-level TransitionView.")
+                            .padding(.horizontal, horizontalPadding)
+                        
+                        Text("(TODO)")
+                            .padding(.horizontal, horizontalPadding)
                     }
                 }
                 
@@ -54,23 +64,24 @@ struct DeckListView: View {
                     showsDefaultCloseButton: true,
                     closeCompletion: { hideTabBar = false }
                 ) { _ in
-                        OpenCardDeck(
-                            matchedGeometryID: "german",
-                            title: "German",
-                            items: germanEntries,
-                            cardTapAction: { _ in },
-                            cardTransitionWrapperIDPrefix: "")
-                        { entry in
-                            GermanCardContent(entry: entry)
-                        }
+                    // We could have made this its own view, in a separate file, for more control.
+                    OpenCardDeck(
+                        matchedGeometryID: "german",
+                        title: "German Nouns",
+                        items: germanNouns,
+                        cardTapAction: { _ in },
+                        cardTransitionWrapperIDPrefix: "")
+                    { entry in
+                        GermanCardContent(entry: entry)
                     }
+                }
                 
                 if hideTabBar {
                     Color.clear
                         .toolbar(.hidden, for: .tabBar)
                 }
             }
-            .background(Color.init(white: 0.97))
+            .background(Color.init(white: 0.99))
         }
     }
 }

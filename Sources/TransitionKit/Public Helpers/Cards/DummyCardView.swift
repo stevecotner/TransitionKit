@@ -11,12 +11,12 @@ public struct DummyCardView: View {
     /// used for matchedGeometryEffect
     let matchedGeometryID: String
     let cornerRadius: CGFloat
-    let shouldShowShadow: Bool
+    let shadowOpacity: CGFloat
     
-    public init(matchedGeometryID: String, cornerRadius: CGFloat = 14, shouldShowShadow: Bool) {
+    public init(matchedGeometryID: String, cornerRadius: CGFloat = 14, shadowOpacity: CGFloat = 0.2) {
         self.matchedGeometryID = matchedGeometryID
         self.cornerRadius = cornerRadius
-        self.shouldShowShadow = shouldShowShadow
+        self.shadowOpacity = shadowOpacity
     }
     
     public var body: some View {
@@ -31,7 +31,7 @@ public struct DummyCardView: View {
                 .background(
                     RoundedRectangle(cornerRadius: cornerRadius)
                         .fill(Color.white)
-                        .shadow(color: .black.opacity(shouldShowShadow ? 0.2 : 0), radius: 18, x: 0, y: 3)
+                        .shadow(color: .black.opacity(shadowOpacity), radius: 18, x: 0, y: 3)
                         .matchedGeometryEffect(id: matchedGeometryID + "card" + "background", in: namespace)
                 )
         }
@@ -40,6 +40,6 @@ public struct DummyCardView: View {
 
 struct DummyCardView_Previews: PreviewProvider {
     static var previews: some View {
-        DummyCardView(matchedGeometryID: "hi", shouldShowShadow: true)
+        DummyCardView(matchedGeometryID: "hi", shadowOpacity: 0.2)
     }
 }

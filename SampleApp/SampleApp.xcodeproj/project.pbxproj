@@ -25,7 +25,7 @@
 		87F5A3B229367AE40029D2D8 /* DeckListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3B1293679EB0029D2D8 /* DeckListView.swift */; };
 		87F5A3BC2936A0EB0029D2D8 /* CartView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3BB29369EFE0029D2D8 /* CartView.swift */; };
 		87F5A3BE2936A1170029D2D8 /* CheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3BD2936A1170029D2D8 /* CheckoutView.swift */; };
-		87F5A3C82936F8F00029D2D8 /* GermanEntry.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3C72936F8F00029D2D8 /* GermanEntry.swift */; };
+		87F5A3C82936F8F00029D2D8 /* GermanNoun.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3C72936F8F00029D2D8 /* GermanNoun.swift */; };
 		87F5A3CA2936FA700029D2D8 /* GermanCardContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 87F5A3C92936FA700029D2D8 /* GermanCardContent.swift */; };
 /* End PBXBuildFile section */
 
@@ -68,7 +68,7 @@
 		87F5A3B1293679EB0029D2D8 /* DeckListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeckListView.swift; sourceTree = "<group>"; };
 		87F5A3BB29369EFE0029D2D8 /* CartView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartView.swift; sourceTree = "<group>"; };
 		87F5A3BD2936A1170029D2D8 /* CheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckoutView.swift; sourceTree = "<group>"; };
-		87F5A3C72936F8F00029D2D8 /* GermanEntry.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GermanEntry.swift; sourceTree = "<group>"; };
+		87F5A3C72936F8F00029D2D8 /* GermanNoun.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GermanNoun.swift; sourceTree = "<group>"; };
 		87F5A3C92936FA700029D2D8 /* GermanCardContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GermanCardContent.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -112,8 +112,7 @@
 			isa = PBXGroup;
 			children = (
 				87F5A3B1293679EB0029D2D8 /* DeckListView.swift */,
-				87F5A3C72936F8F00029D2D8 /* GermanEntry.swift */,
-				87F5A3C92936FA700029D2D8 /* GermanCardContent.swift */,
+				87F5A3CB2937D6170029D2D8 /* German */,
 			);
 			path = "4. Decks";
 			sourceTree = "<group>";
@@ -245,6 +244,15 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		87F5A3CB2937D6170029D2D8 /* German */ = {
+			isa = PBXGroup;
+			children = (
+				87F5A3C72936F8F00029D2D8 /* GermanNoun.swift */,
+				87F5A3C92936FA700029D2D8 /* GermanCardContent.swift */,
+			);
+			path = German;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -393,7 +401,7 @@
 				87A232AE292F56E100B5EC64 /* BasicView.swift in Sources */,
 				872159AC29318677009FBE07 /* CardListView.swift in Sources */,
 				87A2327B292F2C8B00B5EC64 /* SampleApp.swift in Sources */,
-				87F5A3C82936F8F00029D2D8 /* GermanEntry.swift in Sources */,
+				87F5A3C82936F8F00029D2D8 /* GermanNoun.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -8,13 +8,14 @@
 import SwiftUI
 
 struct GermanCardContent: View {
-    let entry: GermanEntry
+    let entry: GermanNoun
     
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
                 Text(entry.german).bold()
-                Text(entry.english)
+                Text(entry.gender.rawValue)
+                Text(entry.english).italic()
             }
             Spacer()
         }
@@ -24,6 +25,6 @@ struct GermanCardContent: View {
 
 struct GermanCardContent_Previews: PreviewProvider {
     static var previews: some View {
-        GermanCardContent(entry: .init(german: "Ja", english: "Yes"))
+        GermanCardContent(entry: .init(german: "das Wasser", gender: .neuter, english: "water"))
     }
 }
