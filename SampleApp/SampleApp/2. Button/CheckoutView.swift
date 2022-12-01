@@ -18,8 +18,8 @@ struct CheckoutView: View {
                     VStack(alignment: .leading) {
                         HStack {
                             Text("Checkout")
-                                .minimumScaleFactor(0.1)
                                 .matchedGeometryEffect(id: "checkouttitle", in: namespace)
+                                .minimumScaleFactor(0.1)
                                 .font(.title.bold())
                                 .foregroundColor(.black)
                                 .padding(.vertical, 12)

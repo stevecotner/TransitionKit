@@ -70,7 +70,8 @@ struct BasicView: View {
                             viewMakerID: id,
                             transitionWrapperID: id,
                             isActive: binding(for: number),
-                            transitionStyle: transitionStyle) { _ in
+                            transitionStyle: transitionStyle,
+                            destination: { _ in
                                 VStack(alignment: .leading) {
                                     Spacer()
                                         .frame(height: 20)
@@ -81,7 +82,7 @@ struct BasicView: View {
                                         .matchedGeometryEffect(id: id, in: namespace)
                                     Spacer()
                                 }
-                            }
+                            })
                     }
                 }
             }

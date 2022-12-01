@@ -51,8 +51,8 @@ struct CartView: View {
                                     HStack {
                                         Spacer()
                                         Text("Checkout")
-                                            .minimumScaleFactor(0.1)
                                             .matchedGeometryEffect(id: "checkouttitle", in: namespace)
+                                            .minimumScaleFactor(0.1)
                                             .font(.title2.bold())
                                             .foregroundColor(.black)
                                             .padding(.vertical, 12)
